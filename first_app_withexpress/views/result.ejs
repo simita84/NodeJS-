@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  </head>
+  <body>
+    <h3 class="page-header">Welcome to <%= title %></h3>
+    <h4><u>Submitted details</u></h4>
+	<ul class="list-unstyled">
+		<li><strong>Name </strong><%=user_info.name%></li>
+		<li><strong>Location </strong><%=user_info.location%></li>
+		<li><strong>Language </strong><%=user_info.language%></li>
+		<li><strong>Comment </strong><%=user_info.comment%></li>
+	</ul>
+	<a href="/" class="btn btn-primary">Go back</a>
+  </body>
+</html>

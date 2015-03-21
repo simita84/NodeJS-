@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+
+  $(document).ready(function(){
+    //alert("hello");
+     io = io.connect();
+     room_name = prompt('type a room name');
+     // Emit ready event with room name.
+     io.emit('ready', room_name);
+
+
+           // Emit ready event, and wait for acknowledgement.
+      io.emit('ready',room_name, function(data) {
+        $('.alert-success').html("<p>"+data.success+"</p>");
+      });
+
+
+     io.on('announce',function(data){
+      console.log(data);
+        $('.msg').html('<p>'+data.message+'</p>');
+     });
+
+     // io.emit('order_ice_cream', {type: 'chocolate', quantity: 5});
+     
+     // io.on('deliver_ice_cream',function(stuff){
+     //  console.log("Ice cream delivered with following mesagge",stuff.message);
+      
+     // });
+
+    // io.emit('ready');
+    // io.on('new_visitor',function(){
+    //   $('body').append('<p>New vistor'+ new Date().toString()+'</p>');
+    // });
+  });
+</script>
+  </head>
+  <body>
+   <h1>Socket</h1>
+   <div class="alert-success"></div>
+	<div class="msg"></div>	
+  </body>
+</html>
